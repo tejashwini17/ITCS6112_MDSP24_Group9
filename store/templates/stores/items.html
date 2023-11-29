@@ -24,7 +24,7 @@
                         <tr>
                             <td>{{ product.name }}</td>
                             <td>{{ product.category }}</td>
-                            <td>₹{{ product.price }}</td>
+                            <td>${{ product.price }}</td>
                             <td>{{ product.available }}</td>
 
                             <td><a class="btn btn-sm btn-info" href="{% url 'update_item' product.id %}">Update</a></td>
