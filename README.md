@@ -11,4 +11,4 @@ then cd into project directory
 Run => python manage.py runserver
 
 
-Please refer to project Abstract here => https://drive.google.com/file/d/1s6YHbJJt-RoRFMiFnK3OkeHbmNMD-Ra6/view?usp=sharing
+Please refer to project Documentation here => https://docs.google.com/document/d/1rMG5yB5Ww6F9tGdQSDh-LPy7uL0cWQwXOZ6Nrv44B-s/edit?usp=sharing
