@@ -1,0 +1,17 @@
+{% extends 'stores/main.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn btn-primary" type="submit" name="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
