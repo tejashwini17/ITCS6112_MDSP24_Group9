@@ -1,14 +1,14 @@
 # F00d_0rdering_System
 
-## Steps
-
-Please do install all the requirements
-
-pip install -r requirements.txt
-
-then cd into project directory
-
-Run => python manage.py runserver
-
-
-Please refer to project Documentation here => https://docs.google.com/document/d/1rMG5yB5Ww6F9tGdQSDh-LPy7uL0cWQwXOZ6Nrv44B-s/edit?usp=sharing
+At the heart of our project lies the ambition to revolutionize the way people
+order food online. With the rapid urbanization and changing lifestyle
+preferences, traditional food ordering methods often fall short in terms of
+convenience, clarity, and variety. We're here to change that.
+Our vision is to leverage cutting-edge technology to simplify the food ordering
+process, making it seamless, transparent, and accessible to all. Whether you're
+craving your favorite cuisine or exploring new flavors, our platform will be
+your go-to destination.
+Picture this: you're hungry, browsing through a plethora of options, and within a
+few taps, your meal is on its way to your doorstep. No more confusion about
+menu items, pricing, or delivery times. Our intuitive interface ensures that your
+food ordering experience is as effortless as possible.
