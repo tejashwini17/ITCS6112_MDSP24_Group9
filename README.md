@@ -12,3 +12,10 @@ Picture this: you're hungry, browsing through a plethora of options, and within 
 few taps, your meal is on its way to your doorstep. No more confusion about
 menu items, pricing, or delivery times. Our intuitive interface ensures that your
 food ordering experience is as effortless as possible.
+Project Scope:
+ Develop a user-friendly web interface for browsing menus, placing orders, and managing
+user accounts.
+ Implement a secure payment processing system to facilitate online transactions.
+ Create a restaurant dashboard for menu updates, order management, and performance
+analytics.
+Ensure compliance with stringent data security and privacy regulations
