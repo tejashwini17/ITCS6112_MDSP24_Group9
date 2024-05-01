@@ -13,6 +13,7 @@ from .models import *
 from .forms import *
 from .filters import *
 from .decorators import unauthenticated_user, allowed_users, admin_only
+from decimal import Decimal
 
 
 # Create your views here.
@@ -177,20 +178,29 @@ def updateItem(request):
 
 
 def processOrder(request):
+    print("processing order")
     trasaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
+        print("user is autenticated")
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         total = float(data['form']['total'])
         order.transaction_id = trasaction_id
 
-        if total == order.get_cart_total:
-            order.complete = True
+        print(total)
+        print(order.get_cart_total)
+        print(type(total))
+        print(type(order.get_cart_total))
+
+        # if Decimal(total) == order.get_cart_total:
+        print("marking order status as complete")
+        order.complete = True
         order.save()
 
         if order.delivery:
+            print("Delivery details:")
             DeliveryInfo.objects.create(
                 customer=customer,
                 order=order,
@@ -293,7 +303,7 @@ def deleteOrder(request, pk):
     if request.method == 'POST':
         order.delete()
         return redirect('/admin')
-    context = {'item': order}
+    context = {'item': order}           
     return render(request, 'stores/deleteItem.html', context)
 
 

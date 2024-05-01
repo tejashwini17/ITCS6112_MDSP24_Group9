@@ -22,16 +22,40 @@
                         <p>Delivery Address:</p>
                         <hr>
                         <div class="form-field">
-                            <input class="form-control" type="text" name="address" placeholder="Address..">
+                            <input required class="form-control" type="text" name="address" placeholder="Address..">
                         </div>
-                        <div class="form-field">
+                        <!-- <div class="form-field">
                             <input class="form-control" type="text" name="city" placeholder="City..">
                         </div>
                         <div class="form-field">
                             <input class="form-control" type="text" name="state" placeholder="State..">
+                        </div> -->
+                        <div class="form-field">
+                            <select required class="form-control" id="state-select" name="state">
+                                <option value="" disabled selected>Select State..</option>
+                                <!-- Add options for all US states here -->
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="SC">South Carolina</option>
+                            </select>
                         </div>
                         <div class="form-field">
-                            <input class="form-control" type="text" name="zip_code" placeholder="Zip-Code..">
+                            <select required class="form-control" id="city-select" name="city">
+                                <option value="" disabled selected>Select City..</option>
+                                <!-- Cities will be populated dynamically based on the selected state -->
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <input required class="form-control" type="text" name="zip_code" placeholder="Zip-Code..">
                         </div>
                     </div>
 
@@ -70,10 +94,46 @@
         </div>
     </div>
 
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AUsbywV99EBH8FhyCGI27IwEkPVqaCyNtZf3KfDwPHE47s5JiOQEN6EdtUYk5BdR5VjDYCLBLaVNwlat&currency=USD"></script> -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ASEHyUBZnPTp-MXfiRPgM2hM8ODcoC96VpjYiH1Spy4b02XHxh4OLyv-MAmSStStDdbp7QpxpIIw3jb5&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUsbywV99EBH8FhyCGI27IwEkPVqaCyNtZf3KfDwPHE47s5JiOQEN6EdtUYk5BdR5VjDYCLBLaVNwlat&currency=USD"></script>
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=ATNjfNb3exj4SC0zgq1OPuR9KmTSinf_SY7kSJg3-uFgu7xIBngUtLxS8GCRPebYYrb00aU7zDYrZ_uf&currency=USD"></script> -->
 
     <script>
+
+        const statesData = {
+            "AL": ["Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa", "Hoover"], // Alabama
+            "AK": ["Anchorage", "Fairbanks", "Juneau", "Sitka", "Ketchikan", "Wasilla"], // Alaska
+            "AZ": ["Phoenix", "Tucson", "Mesa", "Chandler", "Scottsdale", "Glendale"], // Arizona
+            "AR": ["Little Rock", "Fort Smith", "Fayetteville", "Springdale", "Jonesboro", "North Little Rock"], // Arkansas
+            "CA": ["Los Angeles", "San Diego", "San Jose", "San Francisco", "Fresno", "Sacramento"], // California
+            "CO": ["Denver", "Colorado Springs", "Aurora", "Fort Collins", "Lakewood", "Thornton"], // Colorado
+            "CT": ["Bridgeport", "New Haven", "Hartford", "Stamford", "Waterbury", "Norwalk"], // Connecticut
+            "DE": ["Wilmington", "Dover", "Newark", "Middletown", "Smyrna", "Milford"], // Delaware
+            "FL": ["Jacksonville", "Miami", "Tampa", "Orlando", "St. Petersburg", "Hialeah"], // Florida
+            "GA": ["Atlanta", "Augusta", "Columbus", "Macon", "Savannah", "Athens"], // Georgia
+            "NC": ["Charlotte", "Raleigh", "Greensboro", "Durham", "Winston-Salem", "Fayetteville"], // North Carolina
+            "SC": ["Columbia", "Charleston", "North Charleston", "Mount Pleasant", "Rock Hill", "Greenville"] // South Carolina
+            // Add more states along with their cities and zip codes
+        };
+
+        // Function to populate cities dropdown based on the selected state
+        document.getElementById('state-select').addEventListener('change', function() {
+            const state = this.value;
+            const cities = statesData[state];
+            const citySelect = document.getElementById('city-select');
+            citySelect.innerHTML = '<option value="" disabled selected>Select City..</option>';
+            if (cities) {
+                cities.forEach(function(city) {
+                    const option = document.createElement('option');
+                    option.text = city;
+                    option.value = city;
+                    citySelect.add(option);
+                });
+            }
+        });
+
+
+
+ 
         // Render the PayPal button into #paypal-button-container
         var total = '{{ order.get_cart_total }}'
 
@@ -98,7 +158,15 @@
             onApprove: function (data, actions) {
                 return actions.order.capture().then(function (details) {
                     // Show a success message to the buyer
+                    if (details.status === 'COMPLETED') {
                     submitFormData()
+                    alert('Payment successful! Thank you for your order.');}
+                    else {
+                        // Payment capture failed, display an error message to the user
+                          alert('Payment capture failed. Please try again later.');
+                          // You can also log the details of the failed payment for debugging purposes
+                          console.error('Payment capture failed:', details);
+                        }
                 });
             }
 
@@ -107,6 +175,7 @@
     </script>
     <script>
         let delivery = '{{ order.delivery }}'
+        console.log('{{ order.delivery }}');
 
         if (delivery === 'False') {
             document.getElementById('delivery-info').innerHTML = ''
@@ -123,7 +192,8 @@
 
         })
 
-        {#document.getElementById('make-payment').addEventListener('click', submitFormData)#}
+        // {#document.getElementById('make-payment').addEventListener('click', submitFormData)#}
+        
 
         function submitFormData() {
             console.log("Payment Button Clicked")
@@ -156,6 +226,7 @@
             }
 
             let url = '/process_order/';
+            console.log("Proceeded to process_order")
             fetch(url, {
                 method: 'POST',
                 headers: {

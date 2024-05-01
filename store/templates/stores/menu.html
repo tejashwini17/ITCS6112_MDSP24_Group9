@@ -13,8 +13,8 @@
     </form>
 
     <div class="row">
-    <script>console.log({{ request.user }})</script>
-
+    <!-- <script>console.log({{ request.user }})</script> -->
+    <script>console.log("{{ request.user.username }}")</script>
         {% for product in products %}
 
             <div class="col-lg-4">
