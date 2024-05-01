@@ -1,5 +1,5 @@
-[Project Video Recording link](https://drive.google.com/file/d/1F3P_5AgSwkmrpWmO_gd7eaRM_7Uu2dA1/view?usp=sharing)
+Project Final Demo Recording link : https://drive.google.com/file/d/19NGMKudaOCZxBzF8xOW-etbnwwYQsobS/view?usp=drive_link
 
-[Project presentation link](https://drive.google.com/file/d/169kb_sqozxiGbdEauZcY-SpU8jfWUR8U/view?usp=sharing)
+Project presentation link : https://drive.google.com/file/d/1lNY6gLrQi9IlvVh6ehSV5gX1K-7MYXyI/view?pli=1
 
 
