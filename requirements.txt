@@ -1,4 +1,4 @@
-virtualenv
+Virtualenv
 pillow
 django-filter~=2.4.0
 Django~=3.1.3
